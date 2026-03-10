@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Publications — Arshia Saeidifar</title>
+<link rel="stylesheet" href="style.css"/>
+<style>
+  .pub-hero {
+    padding: 80px 80px 0;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--tan);
+  }
+
+  .filter-btn {
+    padding: 7px 18px;
+    border-radius: 3px;
+    border: 1.5px solid var(--tan);
+    background: transparent;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: none;
+    transition: all 0.22s;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  /* ── PUB LIST ── */
+  .pub-list {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 80px 100px;
+  }
+
+  .pub-year-group { margin-top: 52px; }
+
+  .pub-year-label {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--tan2);
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .pub-item {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    gap: 20px 28px;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--tan);
+    align-items: start;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .pub-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s var(--ease);
+  }
+
+  .pub-item:hover::before { transform: scaleY(1); }
+
+  .pub-num {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--tan2);
+    padding-top: 4px;
+    text-align: right;
+  }
+
+  .pub-body h3 {
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.45;
+    margin-bottom: 6px;
+    transition: color 0.2s;
+  }
+
+  .pub-item:hover .pub-body h3 { color: var(--accent); }
+
+  .pub-authors {
+    font-size: 0.86rem;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+
+  .pub-authors strong {
+    color: var(--brown);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .pub-venue {
+    font-size: 0.84rem;
+    color: var(--accent);
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+
+  .pub-chips { display: flex; gap: 7px; flex-wrap: wrap; }
+
+  .pub-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+    padding-top: 4px;
+  }
+
+  .pub-link-btn {
+    padding: 5px 14px;
+    border-radius: 3px;
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid var(--tan);
+    color: var(--muted);
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .pub-link-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  /* highlight animation for featured */
+  .pub-item.featured {
+    background: linear-gradient(90deg, rgba(184,92,44,0.03) 0%, transparent 100%);
+  }
+
+  @media (max-width: 768px) {
+    .pub-hero { padding: 50px 24px 0; }
+    .pub-list { padding: 0 24px 80px; }
+    .pub-item { grid-template-columns: 1fr; }
+    .pub-num { display: none; }
+    .pub-links { flex-direction: row; }
+  }
+</style>
+</head>
+<body data-page="publications">
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html">Arshia Saeidifar</a>
+  <ul class="nav-links">
+    <li><a href="index.html" data-page="home">Home</a></li>
+    <li><a href="publications.html" data-page="publications">Publications</a></li>
+    <li><a href="projects.html" data-page="projects">Projects</a></li>
+    <li><a href="cv.html" data-page="cv">CV</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrapper">
+
+  <div class="pub-hero">
+    <div class="reveal">
+      <div class="section-eyebrow">Research output</div>
+      <h1 class="section-title">Publications</h1>
+      <p class="section-lead">Peer-reviewed papers, conference proceedings, and technical reports. Names underlined indicate my contribution as primary author.</p>
+    </div>
+    <div class="filter-bar reveal reveal-delay-2">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="journal">Journals</button>
+      <button class="filter-btn" data-filter="conference">Conferences</button>
+      <button class="filter-btn" data-filter="survey">Surveys</button>
+    </div>
+  </div>
+
+  <div class="pub-list">
+
+    <div class="pub-year-group reveal">
+      <div class="pub-year-label">2024</div>
+
+      <div class="pub-item featured" data-type="journal">
+        <div class="pub-num">01</div>
+        <div class="pub-body">
+          <h3>Adaptive Control Frameworks for Distributed Embedded Systems</h3>
+          <p class="pub-authors"><strong>Arshia Saeidifar</strong>, J. Chen, M. Hosseini</p>
+          <p class="pub-venue">IEEE Transactions on Control Systems Technology, 2024</p>
+          <div class="pub-chips">
+            <span class="tag tag-warm">Journal</span>
+            <span class="tag tag-warm">Embedded Systems</span>
+          </div>
+        </div>
+        <div class="pub-links">
+          <a href="#" class="pub-link-btn">PDF</a>
+          <a href="#" class="pub-link-btn">arXiv</a>
+          <a href="#" class="pub-link-btn">BibTeX</a>
+        </div>
+      </div>
+
+      <div class="pub-item" data-type="conference">
+        <div class="pub-num">02</div>
+        <div class="pub-body">
+          <h3>Towards Robust Fault Detection in Real-Time IoT Networks</h3>
+          <p class="pub-authors"><strong>Arshia Saeidifar</strong>, L. Wang</p>
+          <p class="pub-venue">ACM SIGCOMM 2024</p>
+          <div class="pub-chips">
+            <span class="tag tag-warm">Conference</span>
+            <span class="tag tag-warm">IoT</span>
+          </div>
+        </div>
+        <div class="pub-links">
+          <a href="#" class="pub-link-btn">PDF</a>
+          <a href="#" class="pub-link-btn">Slides</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-year-group reveal">
+      <div class="pub-year-label">2023</div>
+
+      <div class="pub-item" data-type="survey">
+        <div class="pub-num">03</div>
+        <div class="pub-body">
+          <h3>Energy-Efficient Scheduling in Multi-Core Processors: A Survey</h3>
+          <p class="pub-authors"><strong>Arshia Saeidifar</strong>, R. Patel, S. Kim, D. Nguyen</p>
+          <p class="pub-venue">ACM Computing Surveys, 2023</p>
+          <div class="pub-chips">
+            <span class="tag tag-warm">Survey</span>
+            <span class="tag tag-warm">Multi-Core</span>
+          </div>
+        </div>
+        <div class="pub-links">
+          <a href="#" class="pub-link-btn">PDF</a>
+          <a href="#" class="pub-link-btn">BibTeX</a>
+        </div>
+      </div>
+
+      <div class="pub-item" data-type="conference">
+        <div class="pub-num">04</div>
+        <div class="pub-body">
+          <h3>Machine Learning-Based Anomaly Detection for Cyber-Physical Systems</h3>
+          <p class="pub-authors">T. Nakamura, <strong>Arshia Saeidifar</strong></p>
+          <p class="pub-venue">IEEE ICRA 2023 — <em>Best Paper Award</em> 🏆</p>
+          <div class="pub-chips">
+            <span class="tag tag-warm">Conference</span>
+            <span class="tag tag-warm">ML</span>
+          </div>
+        </div>
+        <div class="pub-links">
+          <a href="#" class="pub-link-btn">PDF</a>
+          <a href="#" class="pub-link-btn">Video</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-year-group reveal">
+      <div class="pub-year-label">2022</div>
+
+      <div class="pub-item" data-type="journal">
+        <div class="pub-num">05</div>
+        <div class="pub-body">
+          <h3>Latency-Aware Task Offloading in Mobile Edge Computing</h3>
+          <p class="pub-authors"><strong>Arshia Saeidifar</strong>, F. Ali, G. Martinez</p>
+          <p class="pub-venue">IEEE Transactions on Mobile Computing, 2022</p>
+          <div class="pub-chips">
+            <span class="tag tag-warm">Journal</span>
+            <span class="tag tag-warm">Edge Computing</span>
+          </div>
+        </div>
+        <div class="pub-links">
+          <a href="#" class="pub-link-btn">PDF</a>
+          <a href="#" class="pub-link-btn">Code</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span class="footer-name">Arshia Saeidifar</span>
+    <div class="footer-links">
+      <a href="#">Google Scholar</a>
+      <a href="#">ResearchGate</a>
+      <a href="#">ORCID</a>
+    </div>
+  </footer>
+</div>
+
+<script src="main.js"></script>
+<script>
+  // Filter logic
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const pubItems   = document.querySelectorAll('.pub-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      pubItems.forEach(item => {
+        item.style.display = (f === 'all' || item.dataset.type === f) ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>

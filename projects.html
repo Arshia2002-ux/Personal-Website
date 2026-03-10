@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Projects — Arshia Saeidifar</title>
+<link rel="stylesheet" href="style.css"/>
+<style>
+  .proj-header {
+    padding: 80px 80px 50px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── FEATURED ── */
+  .featured-project {
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    padding: 0 80px;
+  }
+
+  .featured-card {
+    background: var(--warm);
+    border: 1px solid var(--tan);
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    box-shadow: 0 16px 56px rgba(139,111,94,0.12);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+
+  .featured-card:hover {
+    box-shadow: 0 24px 80px rgba(139,111,94,0.2);
+    transform: translateY(-4px);
+  }
+
+  .featured-content {
+    padding: 52px 48px;
+  }
+
+  .featured-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .featured-label::before {
+    content: '★';
+    font-size: 0.65rem;
+  }
+
+  .featured-content h2 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--dark);
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+
+  .featured-content p {
+    font-size: 0.97rem;
+    color: var(--muted);
+    line-height: 1.85;
+    margin-bottom: 24px;
+  }
+
+  .featured-visual {
+    background: linear-gradient(135deg, var(--tan) 0%, #c8af93 50%, #b89878 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-visual::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    top: -40px;
+    right: -40px;
+  }
+
+  .featured-icon {
+    font-size: 4.5rem;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.12));
+    animation: iconFloat 4s ease-in-out infinite;
+  }
+
+  @keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* ── GRID ── */
+  .projects-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 80px 100px;
+  }
+
+  .grid-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .proj-card {
+    background: var(--warm);
+    border: 1px solid var(--tan);
+    border-radius: 10px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease), border-color 0.3s;
+  }
+
+  .proj-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease);
+  }
+
+  .proj-card:hover {
+    box-shadow: 0 14px 44px rgba(139,111,94,0.16);
+    transform: translateY(-4px);
+    border-color: var(--tan2);
+  }
+
+  .proj-card:hover::after { transform: scaleX(1); }
+
+  .proj-icon {
+    width: 46px; height: 46px;
+    background: linear-gradient(135deg, var(--tan), #d4bfa0);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+  }
+
+  .proj-card:hover .proj-icon { transform: rotate(-8deg) scale(1.1); }
+
+  .proj-card h3 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+
+  .proj-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.8;
+    flex: 1;
+    margin-bottom: 20px;
+  }
+
+  .proj-stack {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+
+  .stack-tag {
+    padding: 3px 10px;
+    background: var(--tan);
+    color: var(--brown);
+    border-radius: 3px;
+    font-size: 0.73rem;
+    letter-spacing: 0.03em;
+  }
+
+  .proj-footer {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+  }
+
+  .proj-link {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--tan);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .proj-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .proj-header { padding: 50px 24px 30px; }
+    .featured-project { padding: 0 24px; }
+    .featured-card { grid-template-columns: 1fr; }
+    .featured-visual { min-height: 160px; }
+    .projects-section { padding: 0 24px 80px; }
+    .proj-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .proj-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body data-page="projects">
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html">Arshia Saeidifar</a>
+  <ul class="nav-links">
+    <li><a href="index.html" data-page="home">Home</a></li>
+    <li><a href="publications.html" data-page="publications">Publications</a></li>
+    <li><a href="projects.html" data-page="projects">Projects</a></li>
+    <li><a href="cv.html" data-page="cv">CV</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrapper">
+
+  <div class="proj-header reveal">
+    <div class="section-eyebrow">Work</div>
+    <h1 class="section-title">Projects</h1>
+    <p class="section-lead">Research prototypes, open-source tools, and engineering projects — from embedded firmware to cloud-scale systems.</p>
+  </div>
+
+  <div class="featured-project reveal reveal-delay-1">
+    <div class="featured-card">
+      <div class="featured-content">
+        <div class="featured-label">Featured Project</div>
+        <h2>EdgeSync — Distributed Task Orchestration</h2>
+        <p>A distributed task orchestration system for low-latency edge computing clusters. Handles real-time workload balancing across heterogeneous hardware with sub-millisecond scheduling decisions. Deployed in 3 production environments.</p>
+        <div class="proj-stack">
+          <span class="stack-tag">C++</span>
+          <span class="stack-tag">gRPC</span>
+          <span class="stack-tag">Kubernetes</span>
+          <span class="stack-tag">Rust</span>
+        </div>
+        <div style="display:flex; gap:12px;">
+          <a href="#" class="btn btn-fill">View Code</a>
+          <a href="#" class="btn btn-ghost">Paper</a>
+        </div>
+      </div>
+      <div class="featured-visual">
+        <div class="featured-icon">⚙️</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="projects-section">
+    <div class="grid-label reveal">Other Projects</div>
+    <div class="proj-grid stagger-children">
+
+      <div class="proj-card">
+        <div class="proj-icon">🧠</div>
+        <h3>AnomalyNet</h3>
+        <p>ML pipeline for real-time anomaly detection in cyber-physical systems. Sub-10ms inference latency on embedded hardware.</p>
+        <div class="proj-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">PyTorch</span>
+          <span class="stack-tag">TensorRT</span>
+        </div>
+        <div class="proj-footer">
+          <a href="#" class="proj-link">GitHub</a>
+          <a href="#" class="proj-link">Demo</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🔋</div>
+        <h3>GreenSched</h3>
+        <p>Energy-aware scheduler for multi-core processors. Reduces power consumption by up to 34% with negligible throughput penalty.</p>
+        <div class="proj-stack">
+          <span class="stack-tag">C</span>
+          <span class="stack-tag">Linux Kernel</span>
+          <span class="stack-tag">RISC-V</span>
+        </div>
+        <div class="proj-footer">
+          <a href="#" class="proj-link">GitHub</a>
+          <a href="#" class="proj-link">Paper</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🌐</div>
+        <h3>FaultRadar</h3>
+        <p>Open-source fault detection framework for IoT sensor networks. 99.7% uptime across three industrial deployments.</p>
+        <div class="proj-stack">
+          <span class="stack-tag">Go</span>
+          <span class="stack-tag">MQTT</span>
+          <span class="stack-tag">InfluxDB</span>
+        </div>
+        <div class="proj-footer">
+          <a href="#" class="proj-link">GitHub</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">📡</div>
+        <h3>AdaptCtrl</h3>
+        <p>Adaptive control library for embedded systems with model-predictive control and online parameter estimation.</p>
+        <div class="proj-stack">
+          <span class="stack-tag">MATLAB</span>
+          <span class="stack-tag">C++</span>
+          <span class="stack-tag">ROS2</span>
+        </div>
+        <div class="proj-footer">
+          <a href="#" class="proj-link">GitHub</a>
+          <a href="#" class="proj-link">Docs</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🗂️</div>
+        <h3>ResearchKit CLI</h3>
+        <p>Command-line toolkit for managing research workflows — bibliography, dataset versioning, and reproducibility checks.</p>
+        <div class="proj-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Click</span>
+          <span class="stack-tag">SQLite</span>
+        </div>
+        <div class="proj-footer">
+          <a href="#" class="proj-link">GitHub</a>
+          <a href="#" class="proj-link">PyPI</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-name">Arshia Saeidifar</span>
+    <div class="footer-links">
+      <a href="#">GitHub</a>
+      <a href="#">LinkedIn</a>
+      <a href="mailto:arshia@example.com">Email</a>
+    </div>
+  </footer>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

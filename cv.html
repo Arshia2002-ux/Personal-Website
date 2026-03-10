@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CV — Arshia Saeidifar</title>
+<link rel="stylesheet" href="style.css"/>
+<style>
+  .cv-layout {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 80px 100px;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 60px;
+    align-items: start;
+  }
+
+  /* ── MAIN COLUMN ── */
+  .cv-section { margin-bottom: 56px; }
+
+  .cv-section-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    font-weight: 500;
+    padding-bottom: 14px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--tan);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cv-section-label::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .cv-item {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 12px 24px;
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  .cv-item::before {
+    content: '';
+    position: absolute;
+    left: 130px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--tan2);
+    transform: translateX(-50%);
+    transition: background 0.2s;
+  }
+
+  .cv-item:hover::before { background: var(--accent); }
+
+  .cv-date {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    padding-top: 4px;
+    text-align: right;
+    padding-right: 20px;
+  }
+
+  .cv-details { padding-left: 12px; }
+
+  .cv-details h4 {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 3px;
+    line-height: 1.35;
+  }
+
+  .cv-place {
+    font-size: 0.85rem;
+    color: var(--brown);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .cv-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  .cv-award-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    background: linear-gradient(90deg, #f5e6c8, #eedcb4);
+    border-radius: 3px;
+    font-size: 0.73rem;
+    color: #8a6620;
+    letter-spacing: 0.04em;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* ── SIDEBAR ── */
+  .cv-sidebar {
+    position: sticky;
+    top: calc(var(--nav-h) + 40px);
+  }
+
+  .sidebar-card {
+    background: var(--warm);
+    border: 1px solid var(--tan);
+    border-radius: 10px;
+    padding: 28px 24px;
+    margin-bottom: 20px;
+  }
+
+  .sidebar-card-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+
+  /* skills */
+  .skill-group { margin-bottom: 18px; }
+
+  .skill-group-name {
+    font-size: 0.78rem;
+    color: var(--brown);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .skill-pill {
+    padding: 3px 10px;
+    background: var(--tan);
+    color: var(--brown);
+    border-radius: 20px;
+    font-size: 0.74rem;
+  }
+
+  /* contact */
+  .contact-list { list-style: none; }
+
+  .contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--tan);
+    font-size: 0.85rem;
+  }
+
+  .contact-list li:last-child { border-bottom: none; }
+
+  .contact-list a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-list a:hover { color: var(--accent); }
+
+  .contact-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--tan);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  /* download */
+  .cv-download-row {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--tan);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .cv-updated {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 860px) {
+    .cv-layout { grid-template-columns: 1fr; padding: 50px 24px 80px; gap: 40px; }
+    .cv-sidebar { position: static; }
+    .cv-item { grid-template-columns: 1fr; }
+    .cv-item::before { display: none; }
+    .cv-date { text-align: left; padding-right: 0; padding-left: 0; }
+    .cv-details { padding-left: 0; }
+  }
+</style>
+</head>
+<body data-page="cv">
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html">Arshia Saeidifar</a>
+  <ul class="nav-links">
+    <li><a href="index.html" data-page="home">Home</a></li>
+    <li><a href="publications.html" data-page="publications">Publications</a></li>
+    <li><a href="projects.html" data-page="projects">Projects</a></li>
+    <li><a href="cv.html" data-page="cv">CV</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrapper">
+<div class="cv-layout">
+
+  <!-- MAIN -->
+  <main>
+
+    <div class="reveal" style="margin-bottom:52px;">
+      <div class="section-eyebrow">Background</div>
+      <h1 class="section-title">Curriculum <em>Vitae</em></h1>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="cv-section reveal">
+      <div class="cv-section-label">Education</div>
+
+      <div class="cv-item">
+        <div class="cv-date">2021 – Present</div>
+        <div class="cv-details">
+          <h4>Ph.D. in Electrical &amp; Computer Engineering</h4>
+          <div class="cv-place">University of [Your University]</div>
+          <p class="cv-desc">Dissertation: Adaptive Scheduling and Fault Tolerance in Distributed Embedded Systems. Advisor: Prof. [Name].</p>
+        </div>
+      </div>
+
+      <div class="cv-item">
+        <div class="cv-date">2018 – 2020</div>
+        <div class="cv-details">
+          <h4>M.Sc. in Computer Engineering</h4>
+          <div class="cv-place">University of [Your University]</div>
+          <p class="cv-desc">GPA: 4.0/4.0 — Thesis on energy-efficient multi-core scheduling.</p>
+        </div>
+      </div>
+
+      <div class="cv-item">
+        <div class="cv-date">2014 – 2018</div>
+        <div class="cv-details">
+          <h4>B.Sc. in Electrical Engineering</h4>
+          <div class="cv-place">University of [Your University]</div>
+          <p class="cv-desc">Graduated with First Class Honours.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="cv-section reveal">
+      <div class="cv-section-label">Experience</div>
+
+      <div class="cv-item">
+        <div class="cv-date">Summer 2023</div>
+        <div class="cv-details">
+          <h4>Research Intern</h4>
+          <div class="cv-place">Google DeepMind — London, UK</div>
+          <p class="cv-desc">Worked on efficient inference pipelines for on-device ML models in resource-constrained environments. Co-authored two internal technical reports.</p>
+        </div>
+      </div>
+
+      <div class="cv-item">
+        <div class="cv-date">2020 – 2021</div>
+        <div class="cv-details">
+          <h4>Embedded Systems Engineer</h4>
+          <div class="cv-place">[Company Name]</div>
+          <p class="cv-desc">Designed real-time firmware for industrial IoT sensors. Reduced boot latency by 40% through optimized RTOS configuration.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AWARDS -->
+    <div class="cv-section reveal">
+      <div class="cv-section-label">Awards &amp; Honours</div>
+
+      <div class="cv-item">
+        <div class="cv-date">2023</div>
+        <div class="cv-details">
+          <h4>Best Paper Award <span class="cv-award-badge">🏆 Gold</span></h4>
+          <div class="cv-place">IEEE ICRA 2023</div>
+        </div>
+      </div>
+
+      <div class="cv-item">
+        <div class="cv-date">2022</div>
+        <div class="cv-details">
+          <h4>Graduate Excellence Scholarship</h4>
+          <div class="cv-place">University of [Your University]</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICE -->
+    <div class="cv-section reveal">
+      <div class="cv-section-label">Service &amp; Reviewing</div>
+      <div class="cv-item">
+        <div class="cv-date">2022 – Present</div>
+        <div class="cv-details">
+          <h4>Reviewer</h4>
+          <div class="cv-place">IEEE Transactions on Control Systems · ACM Computing Surveys · IEEE ICRA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cv-download-row reveal">
+      <a href="#" class="btn btn-fill">⬇ Download Full CV (PDF)</a>
+      <span class="cv-updated">Last updated March 2026</span>
+    </div>
+
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="cv-sidebar">
+
+    <div class="sidebar-card reveal reveal-delay-2">
+      <div class="sidebar-card-title">Technical Skills</div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Languages</div>
+        <div class="skill-pills">
+          <span class="skill-pill">C</span>
+          <span class="skill-pill">C++</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Go</span>
+          <span class="skill-pill">Rust</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Systems</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Linux</span>
+          <span class="skill-pill">RTOS</span>
+          <span class="skill-pill">ROS2</span>
+          <span class="skill-pill">RISC-V</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">ML / AI</div>
+        <div class="skill-pills">
+          <span class="skill-pill">PyTorch</span>
+          <span class="skill-pill">TensorRT</span>
+          <span class="skill-pill">ONNX</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">DevOps</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Kubernetes</span>
+          <span class="skill-pill">Docker</span>
+          <span class="skill-pill">CMake</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-card reveal reveal-delay-3">
+      <div class="sidebar-card-title">Contact</div>
+      <ul class="contact-list">
+        <li>
+          <div class="contact-icon">✉</div>
+          <a href="mailto:arshia@example.com">arshia@example.com</a>
+        </li>
+        <li>
+          <div class="contact-icon">🐙</div>
+          <a href="#">github.com/arshia</a>
+        </li>
+        <li>
+          <div class="contact-icon">in</div>
+          <a href="#">LinkedIn</a>
+        </li>
+        <li>
+          <div class="contact-icon">🔬</div>
+          <a href="#">Google Scholar</a>
+        </li>
+      </ul>
+    </div>
+
+  </aside>
+
+</div>
+
+<footer>
+  <span class="footer-name">Arshia Saeidifar</span>
+  <div class="footer-links">
+    <a href="mailto:arshia@example.com">Email</a>
+    <a href="#">GitHub</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
